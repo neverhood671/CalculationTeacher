@@ -1,0 +1,58 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: arial;
+    font-size: 48px;
+}
+
+content {
+    display: inline-grid;
+    grid-template-columns: 70vw;
+    grid-template-rows: 10vw 40vh;
+    text-align: center;
+    justify-content: center;
+}
+
+img {
+    width: 100%;
+}
+
+.arrow {
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDUiICB3aWR0aD0iMTgwIiB2aWV3Ym94ID0gIjAgMCAxODAgNDUiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWF4IG1lZXQiID4NCiAgPHBhdGggZD0iDQogIAkJTSAwIDQ1IFEgOTAgLTQwIDE4MCA0NQ0KICAJCWwgLTggLTExICAgICAgICAgICAgICANCiAgICAgICAgbSA4IDExIGwgLTEzIC02IiANCiAgICAgICAgc3Ryb2tlPSJyZWQiICBmaWxsPSJub25lIiAgdmVjdG9yLWVmZmVjdD0ibm9uLXNjYWxpbmctc3Ryb2tlIi8+DQo8L3N2Zz4=");
+    background-size: cover;
+}
+
+.arrow_block_hidden {
+    display: none;
+}
+
+.input_block {
+    display: flex;
+    align-items: flex-end
+}
+
+.input_field {
+    font-size: 0.8em;
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.input_error {
+    color: red;
+}
+
+.error_arg {
+    background-color: yellow;
+}
+
+.result_input {
+    width: 1.1em;
+    height: 1.1em;
+    font-size: 1em;
+}
+
+input[readonly="readonly"] {
+   border: none;
+}
