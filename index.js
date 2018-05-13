@@ -16,6 +16,10 @@ function resetTask() {
     addArrow(0, firstArg, 1);
     addArrow(firstArg, result, 2);
     showArrow(1);
+
+    $(window).resize(function () {
+        redrawArrows();
+    });
 }
 
 function createQuestion(firstArgValue, secondArgValue, resultValue) {
@@ -88,30 +92,37 @@ function inputEventListener(event) {
 
 
 function addArrow(startNumber, targetNumber, arrowIndex) {
-
-    var oneStepOnRuleSize = $('#axis_img').width() / 22.5, //this is a magic number - this is just an approximate number of divisions in the ruler
-        arrowWidth = oneStepOnRuleSize * (targetNumber - startNumber);
-
     $('<div>', {
         'id': 'arrow' + arrowIndex,
         'class': 'arrow_block arrow_block_hidden',
         'append': $('<div>', {
             'class': 'arrow',
-            'css': {
-                'width': arrowWidth + 'px',
-                'height': (arrowWidth / 4) + 'px'
-            }
+            'data-start-number': startNumber,
+            'data-target-number': targetNumber
         })
     }).appendTo($('.input_block'));
 
     var input = createInput(targetNumber - startNumber, 'input' + arrowIndex);
     $(input).prependTo('#arrow' + arrowIndex);
 
-    $('.input_block').attr("style", "transform: translate(" + (oneStepOnRuleSize - 2) + "px," + (oneStepOnRuleSize / 2) + "px)");
+    redrawArrows();
+}
+
+function redrawArrows() {
+    var oneStepOnRuleSize = $('#axis_img').width() / 22.5, //this is a magic number - this is just an approximate number of divisions in the ruler
+        arrowWidth;
+    $('.arrow_block').each(function (index, value) {
+        arrowWidth = oneStepOnRuleSize * (value.children[1].dataset.targetNumber - value.children[1].dataset.startNumber);
+        $(value.children[1]).css({
+            'width': arrowWidth + 'px',
+            'height': (arrowWidth / 4) + 'px'
+        });
+    });
+    $('.input_block').css({
+        "transform": "translate(" + (oneStepOnRuleSize - 2) + "px," + (oneStepOnRuleSize / 2) + "px)"
+    });
 }
 
 function showArrow(index) {
     $('#arrow' + index).removeClass('arrow_block_hidden');
 }
-
-resetTask();
